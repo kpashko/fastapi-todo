@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from fastapi.params import Depends
 from sqlalchemy.orm import Session
 
@@ -40,4 +40,6 @@ def delete_todo(
         db: Session = Depends(get_db)
 ) -> dict:
     deleted = crud.delete_todo(db, todo_id)
+    if deleted == 0:
+        raise HTTPException(status_code=404, detail=f"Todo with id {todo_id} not found")
     return {"deleted": deleted}
