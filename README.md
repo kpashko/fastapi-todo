@@ -15,12 +15,12 @@ To start the API service make sure you have docker installed and run the followi
 ```
 docker-compose up
 ```
-or, without docker:
+or, without docker (only for SQLite), try:
 ```
 poetry shell
 poetry install
 alembic upgrade head
-python -m uvicorn src.app.main:app --host 0.0.0.0 --port 8000 --reload```
+python -m uvicorn src.app.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 ### Run tests
 ```
